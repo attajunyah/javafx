@@ -23,8 +23,16 @@ public class ControlCircle extends Application {
         hBox.getChildren().addAll(btEnlarge, btShrink);
 
         // Create and register the handler
-        btEnlarge.setOnAction(new EnlargeHandler());
-        btShrink.setOnAction(new ShrinkHandler());
+        btEnlarge.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                circlePane.enlarge();
+            }
+        });
+        btShrink.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent e) {
+                circlePane.shrink();
+            }
+        });
 
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(circlePane);
@@ -37,20 +45,6 @@ public class ControlCircle extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-    }
-
-    class EnlargeHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent e) {
-            circlePane.enlarge();
-        }
-    }
-
-    class ShrinkHandler implements EventHandler<ActionEvent> {
-        @Override
-        public void handle(ActionEvent e) {
-            circlePane.shrink();
-        }
     }
 }
 
